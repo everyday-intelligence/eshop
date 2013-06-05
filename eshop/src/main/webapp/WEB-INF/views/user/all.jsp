@@ -20,7 +20,7 @@ version="2.0">
 <title>Insert title here</title>
 </head>
 <body>
-<sec:authorize access="hasAnyRole('Admin','ROLE_ADMIN')">
+<sec:authorize access="hasRole('ROLE_ADMIN')">
 
 		
 	<a href="new">Ajouter un utilisateur</a>
@@ -39,7 +39,9 @@ La liste des utilisateurs est :
 		password : ${user.password}<br/> 
 		
 		Mail : ${user.mail}<br/>
-		role : ${user.role}<br/>	    
+		role : ${user.role}<br/>	
+		enabled : ${user.isEnabled()}<br/>	  
+		active : ${user.active}<br/>	  
 				_id : ${user._id}<br/>
 				
 				

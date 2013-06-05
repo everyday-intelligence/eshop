@@ -32,23 +32,31 @@ La liste des commandes est :
 <br/> 
 	<c:forEach items="${commandes}" var="commande">
 		etat :	${commande.etat}<br/>
-		   
+		 
 		date : ${commande.date}<br/>
-		user: ${commande.user[0].name}<br /> 
+		user: ${commande.user.name}<br /> 
 		Liste des produits commandés:<br/>
 		
 			 <c:forEach items="${commande.commandeUni}" var="item" varStatus="status">
-       			 ${status.count}) ${item.product.name} <br/>
+       			 ${status.count}) ${item.product.name} , statut:
+       			 ${item.statut} <br/>
        			 ${item.product.vendeur.name} 
    			 </c:forEach>
 		somme TTC: ${commande.total}<br/>		    
-		_id : ${commande._id}<br/>
+		ref: ${commande._id}<br/>
+		
+		
 		 <c:url value="delete/${commande._id}" var="deleteLink">
 		 	<c:param name="page" value="${param.page}"/>
 		 	<c:param name="size" value="${param.size}"/>
 		 </c:url>
 		 <c:url value="/resources/images/delete.png" var="delete_image_url" />
 		 <a href="${deleteLink}"><img src="${delete_image_url}"/></a>
+		 
+		 
+		 <c:url value="/resources/images/delete.png" var="delete_image_url" />
+		 <a href="delete/${commande._id}" onclick="return confirm('etes vous sur de vouloir supprimer')"><img src="${delete_image_url}"/></a>
+		 
 		 <c:url value="/resources/images/update.png" var="update_image_url" />
 		 <a href="update/${commande._id}"><img src="${update_image_url}"/></a>
 	<hr/>

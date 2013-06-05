@@ -116,103 +116,90 @@ public class CommandeController {
 		Authentication a = SecurityContextHolder.getContext().getAuthentication();
 	    String name = a.getName();
 	    System.out.println(name);
-	    User us=(User) userService.findBymail2(name);
-	
-	    System.out.println(us);
-	//   List<Commande> cs=  commandeService.findOrdersWithVendeur(us.get(0));
-	// System.out.println(cs);
-	    //List<Commande> commande = commandeService.findByEtat(etat);
-	   // System.out.println(commande);
-	  
-	   // ArrayList<Commande>commandeVendeur;
+	  //  User us=(User) userService.findBymail2(name);
+		//    System.out.println(us);
+	    
+	    User vendeurConcerne  = new User(name);
+	    System.out.println(vendeurConcerne);
 	      String etat="Non envoyée";
+	      List<String> st= new ArrayList<String>();
+	     
 		   List<Commande> commandeNONENVOYE = commandeService.findByEtat(etat);
+	
 		    System.out.println(commandeNONENVOYE); 
 		    for( Commande com :commandeNONENVOYE){
 		    	List<CommandeUnitaire> commUni= com.getCommandeUni();
 		         System.out.println(commUni);
 		         
 		         for( CommandeUnitaire cmd :commUni){
-		        	 	User	x=  cmd.getProduct().getVendeur();
-		        	 
-		        	 System.out.println(x);
+		        	 User vendeur= cmd.getProduct().getVendeur();
+		        	 String stat=	cmd.getStatut();
+	            	 System.out.println("statut+++++++++"+stat);
+	            	 st.add(stat);
+		        	 System.out.println(vendeur);
 		        	// List<Product> product= new  ArrayList<Product>();
 		        	// product = productService.findProductsByVendeur(x);
 		        	// System.out.println(product);
-		        	while(x==us ){System.out.println("identique");
-		        	commandeVendeur.add(com);}
-		              //System.out.println(userService.findBymail(name));
-//		        	 List<Product> product = productService.findProductsByVendeur(x.get(0));
-//		        	 System.out.println(product);
-//	        	 if(cmd.getProduct().getVendeur()==(userService.findBymail(name))){	 System.out.println("identique");
-//	        	 
-//	        	 commandeVendeur.add(com);
-//	        	 
-//	        	 }
-		        	// else {System.out.println("non identique");}
-//		        	
+				        if(vendeur.equals(vendeurConcerne)){System.out.println("identique");
+			        	commandeVendeur.add(com);
+			        	}
+	        	
 	        }
-		         
-		    			System.out.println("***************");
-		    			// System.out.println(cmdUni);
-		    			// List<User> vendeur=commUni.getProduct().getVendeur();
-		    			 //List<Product> product = productService.findProductsByVendeur(us.get(0));
-		    			//System.out.println(cmdUni);
-		    			
-	    		// List<User> vendeur= commUni.get(2).getProduct().getVendeur();
-	    		// System.out.println(vendeur);
-		    			
-//		    		String id=vendeur.get(0).get_id();
-//		    		User v= userService.findById(id);
-//		    		System.out.println(v);
-		    		//System.out.println(vendeur.get(0).get_id());
-//		    		if(cmdUni.getProduct().getVendeur()==us){
-//		    			
-//		    			 System.out.println("identique");}
-//		    		
-		    	// }
-		   
-		   
-//	    System.out.println("**********/////***********");
-//	    List<Product> product = productService.findProductsByVendeur(us.get(0));
-//	     System.out.println(product);
-//	     System.out.println("**********/////***********");
-//	    List<Product> prod = productService.findAllProducts();
-//	    System.out.println(prod);
-//	    System.out.println("*********************");
-	
+		         System.out.println(st);
+				 if(st.contains("Non envoyée")){
+					 System.out.println("fama");
+					
+		     	 }else{System.out.println("mafamech");
+		     	       //com.setEtat("encours");
+		     	       commandeService.updateEtat(com);}
+		    	    }
 	    
-		
-	    //List<CommandeUnitaire> cs=  commandeService.findOrdersBycommandeUni(product);
-	    // System.out.println(cs);
-	 //   List<Commande> cmd =commandeService.findOrdersBycommandeUni(commande.get(0));
-	    
-	  //  System.out.println(cmd);
-	   
-	    
-	
-	//
-		    }
+		    
+			 
+			 
 		 model.addAttribute("commandeVendeur", commandeVendeur);
+		 model.addAttribute("vendeurConcerne", vendeurConcerne);
 		return "commande/allVen";
 	}
 	
+	
+	
+	@RequestMapping(value = "/updateS/{commandeId}" ,method = RequestMethod.GET)
+	public String updateS(ModelMap model,@PathVariable("commandeId") String commandeId){
+	
+		Authentication a = SecurityContextHolder.getContext().getAuthentication();
+	    String name = a.getName();
+	    System.out.println(name);
+
+	    
+	    User vendeurConcerne  = new User(name);
+	    System.out.println(vendeurConcerne);
+	    Commande c = commandeService.findById(commandeId);
+		commandeService.updateCommande(c);
+		
+		
+		return "redirect:/commande/allVen";
+	}
 	@RequestMapping(value="/add/{shoppingCart}",method=RequestMethod.GET)
 	public String add(@ModelAttribute("shoppingCart") Commande shoppingCart,HttpSession session) {
 		Commande  c =new Commande();
 		Authentication a = SecurityContextHolder.getContext().getAuthentication();
 	    String name = a.getName();
-	    
-		List<User> us=userService.findBymail(name);
-		 System.out.println(us);
+	    User us=(User) userService.findBymail2(name);
+	    System.out.println(us);
 	    c.setUser(us);
 		  Commande cmd = (Commande)session.getAttribute("shoppingCart");
+		  
 		 c.setCommandeUni(cmd.getCommandeUni()); 
+		 for(CommandeUnitaire cm:cmd.getCommandeUni()){
+			 cm.setStatut("Non envoyée"); 
+		 }
 	   //  Commande prod=  shoppingCart.getCommande();
 	//   c.setCommandeUni(  (List<CommandeUnitaire>) shoppingCart.getCommande());
 	 //   System.out.println(prod);
 	  
 		commandeService.save(c);
+		 
 		//model.addAttribute("commande", c);
 		//Commande c = new Commande();
 	//	c.setUser(user);
@@ -316,13 +303,40 @@ public class CommandeController {
 		model.addAttribute("commande", c);
 		return "commande/detail";
 	}
+	
 	@RequestMapping(value = "/delete/{commandeId}", method = RequestMethod.GET)
-	public String delete(@PathVariable("commandeId") String commandeId, ModelMap model,
-			@RequestParam(value = "page", required = false) Integer page,
-			@RequestParam(value = "size", required = false) Integer size) {
-		commandeService.deleteById(commandeId);
-		model.put("page", page);
-		model.put("size", size);
-		return "redirect:/commande/all";
+	public String  delete(@PathVariable("commandeId") String commandeId, ModelMap model) {
+
+		Commande c2= new Commande();
+//		c.set_id(commandeId);
+	         c2 = commandeService.findById(commandeId);
+	        System.out.println(c2.get_id());
+	        System.out.println(c2.getUser());
+		if(c2!=null){
+						User us  = new User();
+			 us= userService.findById(c2.getUser().get_id());
+			  System.out.println(us);
+			  commandeService.delete(commandeId );
+		userService.delete(us);
+		
+		}
+//		model.addAttribute("command", c);
+//			
+	 commandeService.delete(c2);
+	 return "redirect:/commande/all";
 	}
+//	@RequestMapping(value = "/delete/{commandeId}", method = RequestMethod.GET)
+//	public String delete(@PathVariable("commandeId") String commandeId, ModelMap model,
+//			@RequestParam(value = "page", required = false) Integer page,
+//			@RequestParam(value = "size", required = false) Integer size) {
+//	
+//		commandeService.delete(commandeId);
+//	//	model.addAttribute("command", c);
+//		model.put("page", page);
+//		model.put("size", size);
+//	
+//	
+//		
+//		return "redirect:/commande/all";
+//	}
 }

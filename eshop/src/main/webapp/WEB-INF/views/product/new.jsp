@@ -16,9 +16,13 @@ div {
 </style>
 <SCRIPT language="javascript">
 	var c, c2, ch1, ch2;
-
+	 var counter = 2;
 	// ajouter un champ avec son "name" propre;
 	function plus() {
+		if(counter>5){
+		            alert("Only 5 textboxes allow");
+		             return false;
+			 	}   
 		c = document.getElementById('cadre');
 		c2 = c.getElementsByTagName('input');
 		ch1 = document.createElement('input');
@@ -36,6 +40,7 @@ div {
 		c.appendChild(ch2);
 
 		document.getElementById('sup').style.display = 'inline';
+		counter++;
 	}
 
 	// supprimer le dernier champ;
@@ -43,9 +48,11 @@ div {
 		if (c2.length > 0) {
 			c.removeChild(c2[c2.length - 1]);
 			c.removeChild(c2[c2.length - 1]);
+			counter--;
 		}
 		if (c2.length == 0) {
 			document.getElementById('sup').style.display = 'none'
+				
 		}
 		;
 	}

@@ -230,8 +230,8 @@ public class UserController extends SimpleFormController {
 		
 		//Data referencing for java skills list box
 		Map<String,String> role = new LinkedHashMap<String,String>();
-		role.put("ROLE_VENDEUR", "ROLE_VENDEUR");
-		role.put("ROLE_USER", "ROLE_USER");
+		role.put("ROLE_VENDEUR", "Vendeur");
+		role.put("ROLE_USER", "Client");
 		role.put("ROLE_ADMIN", "ROLE_ADMIN");
 		
 		

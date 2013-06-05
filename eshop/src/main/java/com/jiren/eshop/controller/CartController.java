@@ -26,7 +26,7 @@ public class CartController {
 	
 	@Autowired
 	private ProductService productService;
-
+	private int counter = 1;
 	@ModelAttribute("shoppingCart")
 	   public Commande populateCommande() {
 	       return new Commande(); // populates form for the first time if its null
@@ -41,6 +41,7 @@ public class CartController {
 		Product p = productService.findById(productId);
 		CommandeUnitaire cu = new CommandeUnitaire(p);
 		shoppingCart.addToCU(cu);
+		model.addAttribute("count", counter++);
 		model.addAttribute("shoppingCart", shoppingCart);
 		return "redirect:/product/all";
 
@@ -54,6 +55,7 @@ public class CartController {
 		Product p = productService.findById(productId);
 		CommandeUnitaire cu = new CommandeUnitaire(p);
 		shoppingCart.addToCU(cu);
+		model.addAttribute("count", counter++);
 		model.addAttribute("shoppingCart", shoppingCart);
 		return "redirect:/cart/all";
 
@@ -66,6 +68,7 @@ public class CartController {
 	Product p = productService.findById(productId);
 		CommandeUnitaire cu = new CommandeUnitaire(p);
 		shoppingCart.removeCU(cu);
+		model.addAttribute("count", counter--);
 		model.addAttribute("shoppingCart", shoppingCart);
 		return "redirect:/cart/all";
 		
@@ -75,6 +78,7 @@ public class CartController {
 		Product p = productService.findById(productId);
 		CommandeUnitaire cu = new CommandeUnitaire(p);
 		shoppingCart.removeAll(cu);
+		model.addAttribute("count", counter--);
 		model.addAttribute("shoppingCart", shoppingCart);
 		return "redirect:/cart/all";
 		

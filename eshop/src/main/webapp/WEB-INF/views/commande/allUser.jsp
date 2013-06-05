@@ -23,7 +23,16 @@ version="2.0">
 	<a href="../cart/all">Ajouter une commande</a>
 <br/>
 <hr/>
-
+<c:if test="${empty  commandUser}">
+      <c:out value="vous ne disposez pas de commande , veuillez poursuivre votre achat." /> 
+		<br/>
+		
+		<c:url value="/resources/images/poursuivre.png" var="poursuivre_image_url" />
+		<a href="/eshop/product/all"><img src="${poursuivre_image_url}" /></a>
+		
+	
+</c:if>
+<c:if test="${not empty commandUser}">
 
 		<util:pagination maxPages="${maxPages}" page="${param.page}"
 			size="${param.size}" />
@@ -36,13 +45,17 @@ La liste des commandes est :
 				date : ${commande.date}<br/>
 				Liste des produits<br/>
 			 <c:forEach items="${commande.commandeUni}" var="item" varStatus="status">
-       			 ${status.count}) ${item.product.name}, fournisseur: ${item.product.vendeur.name} <br/>
+       			 ${status.count}) ${item.product.name}, fournisseur: ${item.product.vendeur.name},
+       			  <c:if test="${not empty item.statut }">
+       			statut: ${item.statut}
+       			</c:if>
+       			<br/>
    			 </c:forEach>
 			    
 	
 	<hr/>
 	</c:forEach>
-	
+	</c:if>
 </body>
 </html>
 </jsp:root>

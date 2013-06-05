@@ -57,7 +57,7 @@ public class CommandeUnitaire {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((_id == null) ? 0 : _id.hashCode());
+		result = prime * result + ((statut == null) ? 0 : statut.hashCode());
 		return result;
 	}
 	@Override
@@ -69,13 +69,14 @@ public class CommandeUnitaire {
 		if (getClass() != obj.getClass())
 			return false;
 		CommandeUnitaire other = (CommandeUnitaire) obj;
-		if (_id == null) {
-			if (other._id != null)
+		if (statut == null) {
+			if (other.statut != null)
 				return false;
-		} else if (!_id.equals(other._id))
+		} else if (!statut.equals(other.statut))
 			return false;
 		return true;
 	}
+
 
 	
 	

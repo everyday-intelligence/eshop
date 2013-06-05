@@ -19,7 +19,7 @@ public class Commande {
 	@Id
 	private String _id;
 	@DBRef
-	private List<User> user;
+	private User user;
 	private List <CommandeUnitaire>  commandeUni = new ArrayList<CommandeUnitaire>();
 //	private int qte;
 	private String date;
@@ -32,14 +32,15 @@ public class Commande {
 	public void set_id(String _id) {
 		this._id = _id;
 	}
-	public List<User> getUser() {
-		return user;
-	}
-	public void setUser(List<User> us) {
-		this.user = us;
-	}
+	
 	
 
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public String getDate() {
 		return date;
 	}
@@ -134,5 +135,6 @@ public class Commande {
 
 		return totalTTC;
 	}
+	
 	
 }

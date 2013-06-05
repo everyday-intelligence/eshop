@@ -13,8 +13,8 @@
         
 <!--     Configure these elements to secure URIs in your application -->
 <!--           <intercept-url pattern="/product/**" access="hasRole('ROLE_USER')" />  -->
-<!--           <intercept-url pattern="/user/**" access="hasRole('ROLE_ADMIN')" /> -->
-<!--            <intercept-url pattern="eshop/product/**" access="isAuthenticated()" /> -->
+<!--           <intercept-url pattern="/user/all/*" access="hasRole('ROLE_ADMIN')" /> -->
+           <intercept-url pattern="/commande/add/**" access="isAuthenticated()" />
 <!--          <intercept-url pattern="/resources/**" access="permitAll" /> -->
 <!--          <intercept-url pattern="/**" access="permitAll" />  -->
     </http>
@@ -25,6 +25,16 @@
         <authentication-provider user-service-ref="userDetailsService">
             <password-encoder hash="sha-256" />
             </authentication-provider>
-    </authentication-manager>
+            <authentication-provider user-service-ref='LockoutDetailsService' />
+
+		</authentication-manager>
+
+		<beans:bean id="LockoutDetailsService" class="com.jiren.eshop.service.LockoutDetailsServiceImpl">
+		<beans:property name="userMap">
+		<beans:value>
+		user=pass,ROLE_USER
+		</beans:value>
+		</beans:property>
+		</beans:bean>
 
 </beans:beans>

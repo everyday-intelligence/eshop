@@ -18,9 +18,13 @@ public interface CommandeRepository  extends PagingAndSortingRepository<Commande
 
 	
 	public List<Commande> findByEtat(String etat);
-	
+
+	public Commande findBy_id(String commandeId);
 	List<Commande> findOrdersByUser(User user);
 	List<CommandeUnitaire> findOrdersBycommandeUni(List<Product> product);
+	public void delete(Commande c);
+	public void delete(String commandeId);
+	
 	//List<Commande> findOrdersByProduct(List<Product> product);
 	
 	

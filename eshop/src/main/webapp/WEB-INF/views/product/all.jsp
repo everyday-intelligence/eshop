@@ -66,12 +66,14 @@ function enableMap(map,elem,note) {
 	<p align="right">
 	<sec:authorize access="isAuthenticated()">
 	<a href="../authentication/loginsuccess">Profil      </a>
+	<a href="../resources/j_spring_security_logout">deconnexion      </a>
 	</sec:authorize>
 	
 	<a href="../user/new">Inscription       </a><a href="../authentication/login">connexion</a></p>
 	<h5 align="right">
-			<c:url value="/resources/images/16-cart.png" var="panier_image_url" />
+			${count}<c:url value="/resources/images/16-cart.png" var="panier_image_url" />
 		<a href="/eshop/cart/all"><img src="${panier_image_url}" /></a>
+		
 		<a href="../product/searchCriteria">recherche avancee</a>
 	
 	</h5>

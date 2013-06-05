@@ -1,28 +1,16 @@
 package com.jiren.eshop.controller;
-import java.security.Principal;
-
-
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.jiren.eshop.domain.User;
 import com.jiren.eshop.service.UserService;
@@ -52,13 +40,15 @@ public class AuthentificationController {
 	}
 
     @RequestMapping(value="/loginsuccess", method = RequestMethod.GET)
-    public String index (ModelMap model, HttpServletRequest request) {
+    public <LockoutData> String index (ModelMap model, HttpServletRequest request) {
     	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //     	ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
     
 //    	HttpSession session = attr.getRequest().getSession();
         String name = auth.getName(); //get logged in username
         String mail =request.getParameter("mail");
+       // LockoutData data = getData(name);
+      //  data.attempts = 0;
         model.addAttribute("username", name);
         return "authentication/loginsuccess";
     }

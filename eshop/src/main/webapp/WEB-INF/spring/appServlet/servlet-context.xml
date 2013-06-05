@@ -11,7 +11,8 @@ xmlns:context="http://www.springframework.org/schema/context"
  http://www.springframework.org/schema/context/spring-context-3.1.xsd    
  http://www.springframework.org/schema/aop
 http://www.springframework.org/schema/aop/spring-aop-2.5.xsd            
-  http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+  http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 
@@ -51,13 +52,13 @@ http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 		   
 		</bean>
 		
-		<!-- this is a template message that we can pre-load with default state -->
-<!-- 		<bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage"> -->
-<!-- 		  <property name="from" value="eshopeshop34@gmail.com"/> -->
-<!-- 		  <property name="subject" value="Your order"/> -->
-<!-- 		</bean> -->
+<!-- 		this is a template message that we can pre-load with default state -->
+		<bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
+		  <property name="from" value="eshopeshop34@gmail.com"/>
+		  <property name="subject" value="Your order"/>
+		</bean>
 		
-<!-- 		<bean id="orderManager" class="com.jiren.eshop.service.CommandeServiceImpl"> -->
+<!-- 		<bean id="CommandeService" class="com.jiren.eshop.service.CommandeServiceImpl"> -->
 <!-- 		  <property name="mailSender" ref="mailSender"/> -->
 <!-- 		  <property name="templateMessage" ref="templateMessage"/> -->
 <!-- 		</bean> -->

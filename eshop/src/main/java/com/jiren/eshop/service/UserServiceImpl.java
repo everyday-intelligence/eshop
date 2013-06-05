@@ -56,7 +56,8 @@ public class UserServiceImpl implements UserService {
 	       String newPsw2 = encoder.encodePassword(confirm,null);
 	       u.setPassword(newPsw);
 	       u.setConfirmpassword(newPsw2);
-	      
+	   //  u.setActive(false);
+	  //   u.setIsEnabled(true);
 	       userRepository.save(u);
 	}
 

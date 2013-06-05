@@ -17,6 +17,8 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,6 +51,7 @@ public class CommandeServiceImpl implements CommandeService {
     UserService userService;
 	@Autowired
 	ProductService productService;
+	
 	
 	 private MailSender mailSender;
 
@@ -85,13 +88,14 @@ public class CommandeServiceImpl implements CommandeService {
 		String formattedDate = dateFormat.format(date);
 		c.setDate(formattedDate);
 		c.setEtat("Non envoyée");
+	   
 		commandeRepository.save(c);
 		
 		  SimpleMailMessage msg = new SimpleMailMessage(this.templateMessage);
-	        msg.setTo(c.getUser().get(0).getMail());
+	        msg.setTo(c.getUser().getMail());
 	        msg.setText(
-	            "Dear " + c.getUser().get(0).getName()
-	                + c.getUser().get(0).getPrenom()
+	            "Dear " + c.getUser().getName()
+	                + c.getUser().getPrenom()
 	                + ", thank you for placing order. Your order number is "
 	                + c.get_id());
 	        try{
@@ -105,7 +109,7 @@ public class CommandeServiceImpl implements CommandeService {
 
 	@Override
 	public Commande findById(String commandeId) {
-		return commandeRepository.findOne(commandeId);
+		return commandeRepository.findBy_id(commandeId);
 	}
 	@Override
 	public List<Commande> findByEtat(String commandeEtat) {
@@ -114,14 +118,23 @@ public class CommandeServiceImpl implements CommandeService {
 
 	@Override
 	public void delete(Commande commande) {
-		commandeRepository.delete(commande);
+			Commande c=commandeRepository.findBy_id(commande.get_id());
+		if (c != null) {
+		
+		System.out.println("testttt");
+        userRepository.delete(c.getUser());
+			commandeRepository.delete(c);
+			
+	}
+		
 	}
 	@Override
-	public void deleteById(String commandeId) {
-		Commande c = findById(commandeId);
-		if(c!=null){
-			delete(c);
-		}
+	public void delete(String commandeId) {
+		
+			commandeRepository.delete(commandeId);
+	
+			
+		
 	}
 	@Override
 	public void updateCommande(String CommandeId, float somme) {
@@ -167,6 +180,51 @@ public class CommandeServiceImpl implements CommandeService {
 //	}
 //
 
+	
+	
+ 
+	
+	@Override
+	public Commande updateCommande(Commande c) {
+		Authentication a = SecurityContextHolder.getContext().getAuthentication();
+	    String name = a.getName();
+	  User vendeurConcerne  = new User(name);
+	  String etat="Non envoyée";
+	  List<String> st= new ArrayList<String>();
+	   List<Commande> commandeNONENVOYE = commandeRepository.findByEtat(etat);
+	    for( Commande com :commandeNONENVOYE){
+	    	List<User> us1= new ArrayList<User>();
+	    	us1.add(com.getUser());
+	    	for(User us :us1){
+		List<CommandeUnitaire> commUni= c.getCommandeUni();
+		 for( CommandeUnitaire cmd :commUni){
+			 User vendeur= cmd.getProduct().getVendeur();
+			 if(vendeur.equals(vendeurConcerne)){
+				 String stat=	cmd.getStatut();
+				 
+				 if(stat.equals("Non envoyée")){
+	         		cmd.setStatut("envoyée"); 
+	         	 }
+				 System.out.println("statut+++++++++"+cmd.getStatut());
+			 }
+			 
+			
+			
+		 }
+		 
+	    	}}
+	    
+		        return commandeRepository.save(c);
+	   
+	}
+
+	@Override
+	public Commande updateEtat(Commande commande) {
+	commande.setEtat("encours");
+		return commandeRepository.save(commande);
+	}
+
+	
 
 
 	

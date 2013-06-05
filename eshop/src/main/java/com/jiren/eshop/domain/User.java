@@ -38,11 +38,34 @@ public class User  {
 		private String username;
 		private String password;
 		private String status;
+		private Boolean active;
+		private Boolean isEnabled;
 	//	private List<String> authorities;
 	  
 	 
 
 
+
+	public Boolean getIsEnabled() {
+			return isEnabled;
+		}
+		public void setIsEnabled(Boolean isEnabled) {
+			this.isEnabled = isEnabled;
+		}
+	public User(String mail) {
+		super();
+		this.mail = mail;
+	}
+	public Boolean getActive() {
+		return active;
+	}
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public String getConfirmpassword() {
 		return confirmpassword;
 	}
@@ -135,19 +158,7 @@ public class User  {
 	public boolean isEnabled() {
 		return true;
 	}
-//	public List<String> getAuthorities() {
-//		return authorities;
-//	}
-//	
-//	public void setAuthorities(List<String> authorities) {
-//		this.authorities = authorities;
-//	}
-//	public void addAuthority(String authority){
-//    	if(authorities == null){
-//    		authorities = new ArrayList<String>();
-//    	}
-//    	authorities.add(authority);
-//    }
+
 	  public String getNamee() {
 	        Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	 
@@ -166,21 +177,7 @@ public class User  {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((_id == null) ? 0 : _id.hashCode());
-		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result
-				+ ((confirmpassword == null) ? 0 : confirmpassword.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((mail == null) ? 0 : mail.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result
-				+ ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
-		result = prime * result + ((role == null) ? 0 : role.hashCode());
-		result = prime * result + ((sex == null) ? 0 : sex.hashCode());
-		result = prime * result + ((tel == null) ? 0 : tel.hashCode());
-		result = prime * result
-				+ ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 	@Override
@@ -192,68 +189,15 @@ public class User  {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (_id == null) {
-			if (other._id != null)
-				return false;
-		} else if (!_id.equals(other._id))
-			return false;
-		if (address == null) {
-			if (other.address != null)
-				return false;
-		} else if (!address.equals(other.address))
-			return false;
-		if (confirmpassword == null) {
-			if (other.confirmpassword != null)
-				return false;
-		} else if (!confirmpassword.equals(other.confirmpassword))
-			return false;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
 		if (mail == null) {
 			if (other.mail != null)
 				return false;
 		} else if (!mail.equals(other.mail))
 			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (prenom == null) {
-			if (other.prenom != null)
-				return false;
-		} else if (!prenom.equals(other.prenom))
-			return false;
-		if (role == null) {
-			if (other.role != null)
-				return false;
-		} else if (!role.equals(other.role))
-			return false;
-		if (sex == null) {
-			if (other.sex != null)
-				return false;
-		} else if (!sex.equals(other.sex))
-			return false;
-		if (tel == null) {
-			if (other.tel != null)
-				return false;
-		} else if (!tel.equals(other.tel))
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
 		return true;
 	}
+
+
 	  
 	  
 }
