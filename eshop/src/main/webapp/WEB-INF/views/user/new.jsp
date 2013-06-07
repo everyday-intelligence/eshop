@@ -65,11 +65,11 @@ function validatePass(p1, p2) {
 </tr>
 <tr>
 	<td><form:label path="password" >password</form:label></td>
-	<td><form:password path="password"  id="p1"  pattern=".{8,}" title="8 characters minimum"/></td>
+	<td><form:password path="password"  id="p1"  pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8})" title="le mot de passe doit contenir des chiffre, lettre et des cacarteres speciaux"/></td>
 	</tr>
 	<tr>
 	<td><form:label path="confirmpassword" >confirmer mot de passe</form:label></td>
-	<td><form:password path="confirmpassword"  id="p2" pattern=".{8,}" title="8 characters minimum"
+	<td><form:password path="confirmpassword"  id="p2" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8})" title="le mot de passe doit contenir des chiffre, lettre et des cacarteres speciaux"
         onfocus="validatePass(document.getElementById('p1'), this);"
         oninput="validatePass(document.getElementById('p1'), this);"/></td>
 	</tr>
@@ -83,7 +83,7 @@ function validatePass(p1, p2) {
 <%-- 	<td><form:input path="mail"  /></td> --%>
 	
 	<td><p><label>E-mail: </td>
-	<td><input name=mail type=Email required></label></p></td>
+	<td><input name=mail type=Email required pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"></label></p></td>
 	</tr>
 	<tr>
 	    <td><form:label path="role" >role</form:label></td>

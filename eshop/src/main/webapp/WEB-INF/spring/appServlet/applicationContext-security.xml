@@ -25,16 +25,16 @@
         <authentication-provider user-service-ref="userDetailsService">
             <password-encoder hash="sha-256" />
             </authentication-provider>
-            <authentication-provider user-service-ref='LockoutDetailsService' />
+<!--             <authentication-provider user-service-ref='LockoutDetailsService' /> -->
 
 		</authentication-manager>
 
-		<beans:bean id="LockoutDetailsService" class="com.jiren.eshop.service.LockoutDetailsServiceImpl">
-		<beans:property name="userMap">
-		<beans:value>
-		user=pass,ROLE_USER
-		</beans:value>
-		</beans:property>
-		</beans:bean>
+<!-- 		<beans:bean id="LockoutDetailsService" class="com.jiren.eshop.service.LockoutDetailsServiceImpl"> -->
+<!-- 		<beans:property name="userMap"> -->
+<!-- 		<beans:value> -->
+<!-- 		user=pass,ROLE_USER -->
+<!-- 		</beans:value> -->
+<!-- 		</beans:property> -->
+<!-- 		</beans:bean> -->
 
 </beans:beans>

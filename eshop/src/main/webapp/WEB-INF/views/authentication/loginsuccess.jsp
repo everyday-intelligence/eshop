@@ -8,40 +8,74 @@
 <title>log</title>
 
 
-
+<link rel="stylesheet" href="../resources/css/menu.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster" />
 
 </head>
 <body>
-                    <h1>Bienvenue: </h1><p align="right">
-                     <sec:authorize access="isAuthenticated()"> 
-                     <a href="../resources/j_spring_security_logout"> Deconnexion</a></sec:authorize>
-                   
-                     </p>
 
-                   <h3> ${username}</h3> 
-            <sec:authorize access="hasAnyRole('Client','ROLE_USER')">
-            <a href="/eshop/product/all">Consulter le catalogue de produits</a><br>
-            <a href="/eshop/cart/all">Gestion de panier</a><br>
-            <a href="/eshop/user/showU">Gestion de mon compte</a><br>
-            <a href="/eshop/commande/allUser">Consulter mes commandes en cours</a><br>
+                       <h4 align="right"> ${username}</h4> 
+                  
+                  
+                   <nav>
+            <ul class="fancyNav">
+                <sec:authorize access="hasAnyRole('Client','ROLE_USER')">
+                <li id="home"><a href="/eshop/product/all" class="homeIcon">Home</a></li>
+                <li id="news"><a href="/eshop/product/all">Catalogue de produits</a></li>
+                <li id="about"><a href="/eshop/cart/all">Gestion de panier</a></li>
+                <li id="services"><a href="/eshop/user/showU">Gestion de mon compte</a></li>
+                <li id="contact"><a href="/eshop/commande/allUser">Consulter mes commandes en cours</a>
+                </li>
+                  
+                 <sec:authorize access="isAuthenticated()"> 
+                 <li id="deconnexion">
+                     <a href="../resources/j_spring_security_logout"> Deconnexion</a> </li>
+              
+                     
+                     </sec:authorize>
             </sec:authorize>
-            
+                
+                      
             <sec:authorize access="hasAnyRole('ROLE_VENDEUR')">
-            <a href="/eshop/product/all">Consulter le catalogue de produits</a><br>
-             <a href="/eshop/user/showU">Gestion de mon compte</a><br>
-             <a href="/eshop/product/showP">Gestion de mes produits</a><br>
-            <a href="/eshop/product/new">ajouter un produits</a><br>
-            <a href="/eshop/commande/allVen">Consulter mes commandes relatif a mes produits</a><br>
+            <li id="home"><a href="/eshop/product/all" class="homeIcon">Home</a></li>
+          <li id="home">  <a href="/eshop/product/all">catalogue de produits</a></li>
+           <li id="home">  <a href="/eshop/user/showU"> compte</a></li>
+          <li id="home">   <a href="/eshop/product/showP">mes produits</a></li>
+           <li id="home"> <a href="/eshop/product/new">ajouter un produits</a></li>
+           <li id="home"> <a href="/eshop/commande/allVen"> mes commandes </a></li>
+             <sec:authorize access="isAuthenticated()"> 
+                 <li id="deconnexion">
+                     <a href="../resources/j_spring_security_logout"> Deconnexion</a>
+                      </li>
+                     </sec:authorize>
             </sec:authorize>
             
          <sec:authorize access="hasAnyRole('Admin','ROLE_ADMIN')">
-            <h2>Admin</h2>
-             <a href="../product/new">ajouter un produits</a><br>
-             <a href="../product/all">Gerer le catalogue</a><br>
-              <a href="../user/all">Gerer les utilisateurs</a><br>
+           <li id="home"><a href="/eshop/product/all" class="homeIcon">Home</a></li>
+            <li id="home"> <a href="../product/new">ajouter un produits</a></li>
+            <li id="home"> <a href="../product/all">Gerer le catalogue</a></li>
+           <li id="home">   <a href="../user/all">Gerer les utilisateurs</a></li>
              
-             <a href="../commande/all">consulter les commandes en cours</a><br>
-             <hr>
+           <li id="home">  <a href="../commande/all"> les commandes en cours</a></li>
+             <sec:authorize access="isAuthenticated()"> 
+                 <li id="deconnexion">
+                     <a href="../resources/j_spring_security_logout"> Deconnexion</a>
+                      </li>
+                     </sec:authorize>
+            
      </sec:authorize>
+                
+            </ul>
+        </nav> 
+                  
+                  
+                
+            
+      
    </body>         
 </html>
+
+
+
+
+

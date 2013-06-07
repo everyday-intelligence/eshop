@@ -24,12 +24,12 @@ version="2.0">
 <title>product/all</title>
 
 <STYLE type="text/css">
-.submit-button {
-	background-image: url('../resources/images/bouton_recherche.png')
-		no-repeat;
-		}
+body { 
+ 
+  background: #eeeeee;
+  color: #444;
+}
 </STYLE>
-
 		<script type="text/javascript">
 
 //survol et click souris sur les étoiles des avis utilisateurs
@@ -55,12 +55,14 @@ function enableMap(map,elem,note) {
 }
 
 </script>
+
 </head>
 <body>
-
+<div style=" width:1342px; height:900px;top:0px;">
+<div style=" width:1342px; height:80px; position:absolute;">
+	<c:import url="/authentication/login"></c:import>
 		
-		
-	
+	</div>
 		
 <sec:authorize access="hasAnyRole('Admin','ROLE_ADMIN')">	<a href="new">Ajouter un produit</a></sec:authorize>
 	<p align="right">
@@ -69,7 +71,7 @@ function enableMap(map,elem,note) {
 	<a href="../resources/j_spring_security_logout">deconnexion      </a>
 	</sec:authorize>
 	
-	<a href="../user/new">Inscription       </a><a href="../authentication/login">connexion</a></p>
+	</p>
 	<h5 align="right">
 			${count}<c:url value="/resources/images/16-cart.png" var="panier_image_url" />
 		<a href="/eshop/cart/all"><img src="${panier_image_url}" /></a>
@@ -80,25 +82,25 @@ function enableMap(map,elem,note) {
 
 	
 	<!-- REchercher -->
-
+<div>
 <c:url value="${path}/product/search" var="searchLink"/>
-	   <form:form action="${searchLink}" method="GET" >
+	   <form:form action="${searchLink}" method="GET"  class="form-wrapper">
     <FIELDSET>
     <LEGEND>search Criteria</LEGEND>
     <TABLE><tr>
-    <td><LABEL for="name">name</LABEL></td>
-    <td><INPUT id="name" name="name" placeholder="DEll" /></td></tr>
+    <td id="td_input"><LABEL for="name">name</LABEL></td>
+    <td id="td_input"><INPUT id="name" name="name" placeholder="DEll" /></td></tr>
     <tr>
     <td><LABEL for="category">category</LABEL></td>
     <td><INPUT id="category" name="category" placeholder="Ordinateur" /></td>
     </tr>
     </TABLE>
-     <BUTTON id="search" >search</BUTTON>
+     <BUTTON id="search">search</BUTTON>
     </FIELDSET>
     	
   
 </form:form>
-
+</div>
 
 <!-- ENDREchercher -->
 
@@ -184,7 +186,8 @@ function enableMap(map,elem,note) {
 		<hr />
 		
 	</c:forEach>
-
+</div>
 </body>
+
 	</html>
 </jsp:root>

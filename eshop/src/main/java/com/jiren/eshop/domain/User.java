@@ -39,19 +39,14 @@ public class User  {
 		private String password;
 		private String status;
 		private Boolean active;
-		private Boolean isEnabled;
+		
 	//	private List<String> authorities;
 	  
 	 
 
 
 
-	public Boolean getIsEnabled() {
-			return isEnabled;
-		}
-		public void setIsEnabled(Boolean isEnabled) {
-			this.isEnabled = isEnabled;
-		}
+
 	public User(String mail) {
 		super();
 		this.mail = mail;
