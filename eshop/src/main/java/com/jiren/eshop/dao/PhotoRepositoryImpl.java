@@ -26,8 +26,9 @@ public class PhotoRepositoryImpl implements PhotoRepository{
         	 try {
 				BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
 				//File dir = new File(servletContext.getRealPath("")+"/images/"+p.getId());
-				File dir = new File("D:\\PFEING\\springsource\\vfabric-tc-server-developer-2.7.2.RELEASE\\myimages\\"+p.getId());
-				 if(!dir.exists()) {
+				File dir = new File("D:/PFEING/springsource/vfabric-tc-server-developer-2.7.2.RELEASE/myimages/"+p.getId());
+				
+				if(!dir.exists()) {
 			            dir.mkdirs();
 			      }
 				String photoFileName = new Date().getTime()+"";

@@ -1,4 +1,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ 
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -27,66 +29,104 @@ function validatePass(p1, p2) {
 	margin:16px;
 }
 </style>
-<%--  <link rel="stylesheet" href="<c:url value="../resources/css/normalize.css"/>"/>  --%>
-<%--         <link rel="stylesheet" href="<c:url value="../resources/css/main.css"/>"/> --%>
-<%--         <link rel="stylesheet" href="<c:url value="../resources/css/bootstrap-responsive.min.css"/>"/> --%>
-<%--         <link rel="stylesheet" href="<c:url value="../resources/css/bootstrap.min.css"/>"/> --%>
-<%--         <link rel="stylesheet" href="<c:url value="../resources/css/style.css"/>"/> --%>
-<%--         <script src="<c:url value="../resources/js/jquery-1.8.0.min.js" />"></script>         --%>
-<%--         <script src="<c:url value="../resources/js/modernizr-2.6.1.min.js"/>"></script> --%>
-    
-
-	
-<!-- 	<link rel="shortcut icon" href="../resources/css/images/favicon.ico" /> -->
-<%-- 	<link rel="stylesheet" href="<c:url value="../resources/css/jquery.jscrollpane.css"/>"/> --%>
-
-<%-- 	 <script src="<c:url value="../resources/js/jquery-1.7.min.js" />"></script>   --%>
-<%-- 	<script src="<c:url value="../resources/js/DD_belatedPNG-min.js" />"></script>   --%>
-<%-- 	<script src="<c:url value="../resources/js/jquery.jscrollpane.min.js" />"></script>   --%>
-<%-- 	<script src="<c:url value="../resources/js/jquery.jcarousel.js" />"></script>   --%>
-<%-- 	<script src="<c:url value="../resources/js/functions.js" />"></script>   --%>
-	
+ <link rel="stylesheet" href="../resources/css/inscri.css" />
+	<link rel="stylesheet" href="../resources/css/productAll.css" />
 </head>
+
+<div id="entete">
+
+ <div id="enteteLogo"><img src ="../resources/images/logo.eshop.gif"/></div>
+<a href="/eshop/authentication/login">Connexion</a>|<a href="/eshop/user/new">Inscription</a>
+		|<a href="/eshop/cart/all">Mon panier</a>
+
+</div>
+<div id="main">
+ <div id="menu">
+	 <div id="rech"><div class="fpBloc" style="height: auto;">
+	 		<div class="fpBlocTitle">Affinez votre rechreche</div>
+	 		<div class="fpBlocContent" id="blcconfig" style="display: block;">
+	 		<div class="fconfig text">
+	 		
+		<c:url value="${path}/product/searchCriteria" var="searchLink"/>
+	   <form:form action="${searchLink}" method="GET" autocomplete="on">
+  
+
+   <INPUT  name="couleur" id="recherche-texte" placeholder="couleur" />
+
+ <INPUT  name="description"  id="recherche-texte" placeholder="description"/>
+
+  <INPUT name="name" id="recherche-texte" placeholder="nom" />
+  <INPUT name="name" id="recherche-texte" placeholder="nom" />
+
+   
+   
+  
+     <BUTTON id="search" >search</BUTTON>
+  
+  
+</form:form>
+	 		
+	 		</div>
+	 		</div>
+	 		</div>
+	 </div>
+ </div>
+
+ <div id="contenu">
+ 		<div id="headerC">
+ 					<nav id="ddmenuMst">
+ 					
+	<!-- REchercher -->
+		<div style="display: block" align="right">
+		<c:url value="${path}/product/search" var="searchLink"/>
+	   <form:form action="${searchLink}" method="GET"  class="form-wrapper">
+   	 	 <TABLE><tr>
+    	<td><INPUT   id="recinput" name="category" placeholder="Rechercher par produit" /></td>
+   			<td><BUTTON id="search">ok</BUTTON></td></tr>
+   		 </TABLE>
+	</form:form>
+</div>
+ 		</nav>	
+ 		 </div>
+
 <body>
 <fieldset> <legend>Formulaire d'insciption </legend> 
 
 
 <table>
-<form:form action="" method="POST">
+<form:form action="" method="POST" class="form">
+
+
 <tr>	<td><form:label path="name">Nom</form:label></td>
 	<td><form:input path="name" /></td></tr>
 	<tr>
 	<td><form:label path="prenom">Prenom</form:label></td>
 	<td><form:input path="prenom" /></td>
 	</tr>
+
 	<tr>
 	<td><form:label path="login">login</form:label></td>
 	<td><form:input path="login" /></td>
 </tr>
+
 <tr>
 	<td><form:label path="password" >password</form:label></td>
-	<td><form:password path="password"  id="p1"  pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8})" title="le mot de passe doit contenir des chiffre, lettre et des cacarteres speciaux"/></td>
+	<td><form:password path="password"  id="p1"  pattern=".{8}" title="le mot de passe doit contenir 8 caracteres"/></td>
 	</tr>
 	<tr>
 	<td><form:label path="confirmpassword" >confirmer mot de passe</form:label></td>
-	<td><form:password path="confirmpassword"  id="p2" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8})" title="le mot de passe doit contenir des chiffre, lettre et des cacarteres speciaux"
+	<td><form:password path="confirmpassword"  id="p2" pattern=".{8}" title="le mot de passe doit contenir 8 caracteres"
         onfocus="validatePass(document.getElementById('p1'), this);"
         oninput="validatePass(document.getElementById('p1'), this);"/></td>
 	</tr>
 	
-<!-- 	<tr> -->
-<%-- 	<td><form:label path="tel" >tel</form:label></td> --%>
-<%-- 	<td><form:input path="tel" /></td> --%>
-<!-- 	</tr> -->
-	<tr>
-<%-- 	<td><form:label path="mail" >mail</form:label></td> --%>
-<%-- 	<td><form:input path="mail"  /></td> --%>
+
 	
 	<td><p><label>E-mail: </td>
-	<td><input name=mail type=Email required pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"></label></p></td>
-	</tr>
+	<td><input name=mail type=Email required pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"></label></td>
+	
 	<tr>
-	    <td><form:label path="role" >role</form:label></td>
+	    <td><form:label path="role" >Vous etes:</form:label></td>
 		<td>
 		    <form:select path="role">
 			<form:option value="NONE" label="--- Select ---"/>
@@ -108,4 +148,13 @@ function validatePass(p1, p2) {
 </table>
 </fieldset>
 </body>
-</html>
+
+ </div>
+ 
+</div>
+
+<div id="footer">
+© 2013, E-shop.com
+</div>
+	</html>
+

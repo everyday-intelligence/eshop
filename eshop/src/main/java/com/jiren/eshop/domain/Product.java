@@ -1,6 +1,7 @@
 package com.jiren.eshop.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +21,7 @@ public class Product {
 	private Category category;
 	private float price;
 	private String name;
-	private String couleur;
+	//private String couleur;
 	private String description;
 	private  GridFS images;
 	@DBRef
@@ -35,6 +36,26 @@ public class Product {
 
 	public void setVendeur(User vendeur) {
 		this.vendeur = vendeur;
+	}
+
+
+
+
+	
+
+
+	
+
+
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 
@@ -60,24 +81,19 @@ public class Product {
 		this.photos = photos;
 	}
 
-	public String getCouleur() {
-		return couleur;
-	}
+//	public String getCouleur() {
+//		return couleur;
+//	}
 	public GridFS getImages() {
 		return images;
 	}
 	public void setImages(GridFS images) {
 		this.images = images;
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public void setCouleur(String couleur) {
-		this.couleur = couleur;
-	}
+
+//	public void setCouleur(String couleur) {
+//		this.couleur = couleur;
+//	}
 	public String getId() {
 		return _id;
 	}
@@ -131,6 +147,8 @@ public class Product {
 			return false;
 		return true;
 	}
+
+
 
 
 

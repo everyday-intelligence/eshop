@@ -27,10 +27,10 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom{
 		   Criteria c = Criteria.where("id").is(criteria.get_id());
 		   query.addCriteria(c);
 		  }
-		  if (StringUtils.hasText(criteria.getCouleur())) {
-		   Criteria c = Criteria.where("couleur").regex(".*" + criteria.getCouleur() + ".*", "i");
-		   query.addCriteria(c);
-		  }
+//		  if (StringUtils.hasText(criteria.getCouleur())) {
+//		   Criteria c = Criteria.where("couleur").regex(".*" + criteria.getCouleur() + ".*", "i");
+//		   query.addCriteria(c);
+//		  }
 		  if (StringUtils.hasText(criteria.getDescription())) {
 		   Criteria c = Criteria.where("description").regex(".*" + criteria.getDescription() + ".*", "i");
 		   query.addCriteria(c);

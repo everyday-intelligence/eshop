@@ -2,6 +2,7 @@ package com.jiren.eshop.service;
 
 
 import java.text.DateFormat;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -51,23 +53,39 @@ public class CommandeServiceImpl implements CommandeService {
     UserService userService;
 	@Autowired
 	ProductService productService;
-	
-	
+	@Qualifier("monEmailSender")
 	 private MailSender mailSender;
 
+	@Qualifier("monSimpleMailMessage")
 	 private SimpleMailMessage templateMessage;
-	MongoTemplate mongoTemplate;
 	
-	 public void setMailSender(MailSender mailSender) {
-	        this.mailSender = mailSender;
-	    }
+	public void setMailSender(MailSender mailSender) {
+		this.mailSender = mailSender;
+	}
 
-	    public void setTemplateMessage(SimpleMailMessage templateMessage) {
-	        this.templateMessage = templateMessage;
-	    }
+	public void setTemplateMessage(SimpleMailMessage templateMessage) {
+		this.templateMessage = templateMessage;
+	}
+	
+//	@Autowired
+//	@Qualifier("mails")
+//	 private MailSender mailSender;
+//	@Autowired
+//	 private SimpleMailMessage templateMessage;
+//	MongoTemplate mongoTemplate;
+//	
+//	 public void setMailSender(MailSender mailSender) {
+//	        this.mailSender = mailSender;
+//	    }
+//
+//	    public void setTemplateMessage(SimpleMailMessage templateMessage) {
+//	        this.templateMessage = templateMessage;
+//	    }
+//
+//	public void setMongoTemplate(MongoTemplate mongoTemplate) {
+//		this.mongoTemplate = mongoTemplate;}
 
-	public void setMongoTemplate(MongoTemplate mongoTemplate) {
-		this.mongoTemplate = mongoTemplate;}
+
 
 	@Override
 	public float countAllAccounts() {
@@ -220,7 +238,7 @@ public class CommandeServiceImpl implements CommandeService {
 
 	@Override
 	public Commande updateEtat(Commande commande) {
-	commande.setEtat("encours");
+	commande.setEtat("Envoyée");
 		return commandeRepository.save(commande);
 	}
 

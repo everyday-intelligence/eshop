@@ -11,7 +11,7 @@ xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
 
 version="2.0">
     <jsp:directive.page language="java"
-        contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" />
+        contentType="text/html; charset=utf-8" pageEncoding="ISO-8859-1" />
     <jsp:text>
         <![CDATA[ <?xml version="1.0" encoding="ISO-8859-1" ?> ]]>
     </jsp:text>
@@ -23,13 +23,7 @@ version="2.0">
 <meta  charset="UTF-8" />
 <title>product/all</title>
 
-<STYLE type="text/css">
-body { 
- 
-  background: #eeeeee;
-  color: #444;
-}
-</STYLE>
+
 		<script type="text/javascript">
 
 //survol et click souris sur les étoiles des avis utilisateurs
@@ -55,101 +49,126 @@ function enableMap(map,elem,note) {
 }
 
 </script>
-
+ <link rel="stylesheet" href="../resources/css/productAll.css" />
+  
 </head>
 <body>
-<div style=" width:1342px; height:900px;top:0px;">
-<div style=" width:1342px; height:80px; position:absolute;">
-	<c:import url="/authentication/login"></c:import>
-		
-	</div>
-		
-<sec:authorize access="hasAnyRole('Admin','ROLE_ADMIN')">	<a href="new">Ajouter un produit</a></sec:authorize>
-	<p align="right">
-	<sec:authorize access="isAuthenticated()">
-	<a href="../authentication/loginsuccess">Profil      </a>
-	<a href="../resources/j_spring_security_logout">deconnexion      </a>
-	</sec:authorize>
-	
-	</p>
-	<h5 align="right">
-			${count}<c:url value="/resources/images/16-cart.png" var="panier_image_url" />
-		<a href="/eshop/cart/all"><img src="${panier_image_url}" /></a>
-		
-		<a href="../product/searchCriteria">recherche avancee</a>
-	
-	</h5>
+<div id="entete">
 
-	
-	<!-- REchercher -->
-<div>
-<c:url value="${path}/product/search" var="searchLink"/>
-	   <form:form action="${searchLink}" method="GET"  class="form-wrapper">
-    <FIELDSET>
-    <LEGEND>search Criteria</LEGEND>
-    <TABLE><tr>
-    <td id="td_input"><LABEL for="name">name</LABEL></td>
-    <td id="td_input"><INPUT id="name" name="name" placeholder="DEll" /></td></tr>
-    <tr>
-    <td><LABEL for="category">category</LABEL></td>
-    <td><INPUT id="category" name="category" placeholder="Ordinateur" /></td>
-    </tr>
-    </TABLE>
-     <BUTTON id="search">search</BUTTON>
-    </FIELDSET>
-    	
+ <div id="enteteLogo"><img src ="../resources/images/logo.eshop.gif"/></div>
+<a href="/eshop/authentication/login">Connexion</a>|<a href="/eshop/user/new">Inscription</a>
+		|<a href="/eshop/cart/all">Mon panier</a>|<a href="/eshop/product/all">Acceuil</a>
+		<sec:authorize  access="isAuthenticated()">
+			|<a href="../authentication/loginsuccess">Compte      </a>|
+	<a href="../resources/j_spring_security_logout">deconnexion      </a></sec:authorize>
+
+</div>
+<div id="main">
+ <div id="menu">
+	 <div id="rech"><div class="fpBloc" style="height: auto;">
+	 		<div class="fpBlocTitle">Affinez votre rechreche</div>
+	 		<div class="fpBlocContent" id="blcconfig" style="display: block;">
+	 		<div class="fconfig text">
+	 		
+		<c:url value="${path}/product/searchCriteria" var="searchLink"/>
+	   <form:form action="${searchLink}" method="GET" autocomplete="on">
+  
+
+   <INPUT  name="couleur" id="recherche-texte" placeholder="couleur" />
+
+ <INPUT  name="description"  id="recherche-texte" placeholder="description"/>
+
+  <INPUT name="name" id="recherche-texte" placeholder="nom" />
+  <INPUT name="name" id="recherche-texte" placeholder="nom" />
+
+   
+   
+  
+     <BUTTON id="search" >search</BUTTON>
+  
   
 </form:form>
+	 		
+	 		</div>
+	 		</div>
+	 		</div>
+	 </div>
+ </div>
+
+ <div id="contenu">
+ 		<div id="headerC">
+ 					<nav id="ddmenuMst">
+ 					
+	<!-- REchercher -->
+		<div style="display: block" align="right">
+		<c:url value="${path}/product/search" var="searchLink"/>
+	   <form:form action="${searchLink}" method="GET"  class="form-wrapper">
+   	 	 <TABLE><tr>
+    	<td><INPUT   id="recinput" name="category" placeholder="Rechercher par produit" /></td>
+   			<td><BUTTON id="search">ok</BUTTON></td></tr>
+   		 </TABLE>
+	</form:form>
 </div>
+ 		</nav>	
+ 		 </div>
+
+
+<sec:authorize access="hasAnyRole('Admin','ROLE_ADMIN')">	<a href="new">Ajouter un produit</a></sec:authorize>
+
+	
+<table >
+<tr><td>   
+		</td>
+		
+
+	
+	</tr>
+	<tr> <td><sec:authorize access="hasAnyRole('ROLE_VENDEUR')"> <a href="../product/new">ajouter un produit</a></sec:authorize></td></tr></table>
+	
 
 <!-- ENDREchercher -->
 
 
-	<hr />
+	<div class="spar"></div>
 	<c:if test="${not empty maxPages}">
 		<util:pagination maxPages="${maxPages}" page="${param.page}"
 			size="${param.size}" />
 	</c:if>
-	<hr />
+		<div class="spar"></div>
 
 	
-	<script type="text/javascript">
-	int i=0;
-	</script>
+	
 	<c:forEach items="${products}" var="product">
-	<c:url value="uploadphototest/${product._id}/${product.photos[0]}" var="imgSrc"/>
+	<table><tr><td>
+	<c:url value="/product/image/${product._id}/${product.photos[0]}" var="imgSrc"/>
          
-        <a href="show/${product._id}"> <img src="${imgSrc}"/></a><br/>
-			 ${product.name}
-		 
-<details>
-   <summary>Caracteristiques techniques</summary>
-   <table>
-      <tr>
-         <th>Nom</th>
-         <th>Détails</th>
-      </tr>
-      <tr>
-         <td>Prix</td>
-         <td>${product.price}</td>
-      </tr>
-      <tr>
-         <td>Category</td>
-         <td>${product.category.name}</td>
-      </tr>
-      <tr>
-         <td>Couleur Disponibles</td>
-         <td>${product.couleur}</td>
-      </tr>
-      <tr>
-         <td>Descriptions</td>
-         <td>${product.description}</td>
-      </tr>
-  
-   </table>
-</details>
-		
-		
+        <a href="show/${product._id}"> <img src="${imgSrc}"/></a></td>
+			
+					 
+				<td>	<details >
+					   <summary>Caracteristiques techniques</summary>
+					   <table>
+					      <tr>
+					         <th>Nom</th>
+					         <th>Détails</th>
+					      </tr>
+					      <tr>
+					         <td>Prix</td>
+					         <td>${product.price}</td>
+					      </tr>
+					      <tr>
+					         <td>Category</td>
+					         <td>${product.category.name}</td>
+					      </tr>
+					      <tr>
+					         <td>Descriptions</td>
+					         <td>${product.description}</td>
+					      </tr>
+					  
+					   </table>
+					</details>
+		</td></tr>
+	</table>
 	
 	   <sec:authorize access="hasAnyRole('Admin','ROLE_ADMIN')">
 			vendeur : ${product.vendeur.name}<br /> 	
@@ -183,11 +202,20 @@ function enableMap(map,elem,note) {
     </map>
    
 </form>
-		<hr />
+		<div class="spar"></div>
 		
 	</c:forEach>
+	
+
+
+
+ </div>
+ 
+</div>
+
+<div id="footer">
+© 2013, E-shop.com
 </div>
 </body>
-
 	</html>
 </jsp:root>

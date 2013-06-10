@@ -17,12 +17,55 @@ version="2.0">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
+<title>detail</title>
+ <link rel="stylesheet" href="../resources/css/productAll.css" />
 </head>
+<div id="entete">
+
+
+ <div id="enteteLogo"><img src ="../resources/images/logo.eshop.gif"/></div>
+
+</div>
+<div id="main">
+ <div id="menu">
+	 <div id="rech"><div class="fpBloc" style="height: auto;">
+	 		<div class="fpBlocTitle">Affinez votre rechreche</div>
+	 		<div class="fpBlocContent" id="blcconfig" style="display: block;">
+	 		<div class="fconfig text">
+	 		
+		<c:url value="${path}/product/searchCriteria" var="searchLink"/>
+	   <form:form action="${searchLink}" method="GET" autocomplete="on">
+  
+
+   <INPUT  name="couleur" id="recherche-texte" placeholder="couleur" />
+
+ <INPUT  name="description"  id="recherche-texte" placeholder="description"/>
+
+  <INPUT name="name" id="recherche-texte" placeholder="nom" />
+  <INPUT name="name" id="recherche-texte" placeholder="nom" />
+
+   
+   
+  
+     <BUTTON id="search" >search</BUTTON>
+  
+  
+</form:form>
+	 		
+	 		</div>
+	 		</div>
+	 		</div>
+	 </div>
+ </div>
+
+ <div id="contenu">
+
 <body>
 
-    <util:pagination maxPages="${maxPages}" page="${param.page}" size="${param.size}"/>
- <br/>
+
+		<util:pagination maxPages="${maxPages}" page="${param.page}"
+			size="${param.size}" />
+	
 
 <c:forEach items="${products}" var="product">
 
@@ -40,11 +83,11 @@ version="2.0">
 	<tr><td>password: </td><td>	<c:out value="${product.description}"/></td></tr>
 	<tr><td>Adresse: 	</td><td>
 	
-	<c:url value="uploadphototest/${product._id}/${product.photos[0]}" var="imgSrc"/>
+	<c:url value="/product/image/${product._id}/${product.photos[0]}" var="imgSrc"/>
          
          <img src="${imgSrc}"/>
 	
-	<c:out value="${product.photos}"/></td></tr>
+	</td></tr>
 	<tr><td></td><td></td><td>
 	 <c:url value="/resources/images/modif.png" var="modif_image_url" />
  <c:url value="${path}/product/update/${product._id}" var="updateLink"/>
@@ -62,5 +105,12 @@ version="2.0">
 	
 	
 </body>
+</div>
+ 
+</div>
+
+<div id="footer">
+© 2013, E-shop.com
+</div>
 </html>
 </jsp:root>

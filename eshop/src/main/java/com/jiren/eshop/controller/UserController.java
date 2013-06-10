@@ -232,7 +232,8 @@ public class UserController extends SimpleFormController {
 		Map<String,String> role = new LinkedHashMap<String,String>();
 		role.put("ROLE_VENDEUR", "Vendeur");
 		role.put("ROLE_USER", "Client");
-		role.put("ROLE_ADMIN", "ROLE_ADMIN");
+		//role.put("ROLE_ADMIN", "admin");
+	
 		
 		
 		return role;

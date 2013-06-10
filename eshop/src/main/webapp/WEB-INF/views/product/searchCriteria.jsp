@@ -4,6 +4,7 @@ xmlns:c="http://java.sun.com/jsp/jstl/core"
 xmlns:fn="http://java.sun.com/jsp/jstl/functions" 
 xmlns:spring="http://www.springframework.org/tags" 
 xmlns:form="http://www.springframework.org/tags/form" 
+xmlns:sec="http://www.springframework.org/security/tags" 
 xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
 version="2.0">
     <jsp:directive.page language="java"
@@ -18,77 +19,70 @@ version="2.0">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>search</title>
-<SCRIPT language="javascript">
-	var c, c2, ch1, ch2, ch3;
-
-	// ajouter un champ avec son "name" propre;
-	function plus() {
-		c = document.getElementById('cadre');
-		c2 = c.getElementsByTagName('input');
-		ch1 = document.createElement('input');
-		ch2 = document.createElement('input');
-
-		ch1.setAttribute('type', 'text');
-		ch1.setAttribute('name', 'couleur');
-		ch1.setAttribute('readonly','readonly'); 
-		ch1.setAttribute('value', 'attribut'+c2.length/2);
-		ch1.setAttribute('style', 'border:none');
-
-		ch2.setAttribute('type', 'text');
-		ch2.setAttribute('name', 'description');
-		ch3.setAttribute('type', 'text');
-		ch3.setAttribute('name', 'name');
-		c.appendChild(ch1);
-		c.appendChild(ch2);
-		c.appendChild(ch3);
-
-		document.getElementById('sup').style.display = 'inline';
-	}
-	function moins() {
-		if (c2.length > 0) {
-			c.removeChild(c2[c2.length - 1]);
-			c.removeChild(c2[c2.length - 1]);
-		}
-		if (c2.length == 0) {
-			document.getElementById('sup').style.display = 'none'
-		}
-		;
-	}
-	</SCRIPT>
-
-
+<link rel="stylesheet" href="../resources/css/productAll.css" />
 
 </head>
-<body>
-	<h5 align="right"><a href="/eshop/cart/all">Mon panier</a></h5>
 
+<div id="entete">
 
+ <div id="enteteLogo"><img src ="../resources/images/logo.eshop.gif"/></div>
+<a href="/eshop/authentication/login">Connexion</a>|<a href="/eshop/user/new">Inscription</a>
+		|<a href="/eshop/cart/all">Mon panier</a>|<a href="/eshop/product/all">Acceuil</a>
+		<sec:authorize  access="isAuthenticated()">
+			|<a href="../authentication/loginsuccess">Compte      </a>|
+	<a href="../resources/j_spring_security_logout">deconnexion      </a></sec:authorize>
 
+</div>
+<div id="main">
+ <div id="menu">
+	 <div id="rech"><div class="fpBloc" style="height: auto;">
+	 		<div class="fpBlocTitle">Affinez votre rechreche</div>
+	 		<div class="fpBlocContent" id="blcconfig" style="display: block;">
+	 		<div class="fconfig text">
+	 		
 		<c:url value="${path}/product/searchCriteria" var="searchLink"/>
 	   <form:form action="${searchLink}" method="GET" autocomplete="on">
-    <FIELDSET >
-    <LEGEND>recherche avancee</LEGEND>
-    <TABLE><tr>
-    <td><LABEL for="couleur">couleur</LABEL></td>
-    <td><INPUT id="couleur" name="couleur" /></td></tr>
-  <tr>  <td><LABEL for="description">description</LABEL></td>
-    <td><INPUT id="description" name="description" /></td></tr>
- <tr>   <td><LABEL for="name">name</LABEL></td>
-    <td><INPUT id="name" name="name" /></td></tr><tr>
-<td>
-				<div id="cadre" style=" width: 100px"></div> <input
-				type="button" value="ajouter un champ" onclick="plus()" /> <input
-				type="button"  style="display: none" id="sup"
-				value="supprimer un champ" onclick="moins()" /> <!-- 	<input type="button" value="add" onClick="generatetextboxes()">-->
-		</td> 
-    </tr>
+  
+
+   <INPUT  name="couleur" id="recherche-texte" placeholder="couleur" />
+
+ <INPUT  name="description"  id="recherche-texte" placeholder="description"/>
+
+  <INPUT name="name" id="recherche-texte" placeholder="nom" />
+  <INPUT name="name" id="recherche-texte" placeholder="nom" />
+
    
-    </TABLE>
+   
+  
      <BUTTON id="search" >search</BUTTON>
-    </FIELDSET>
+  
   
 </form:form>
+	 		
+	 		</div>
+	 		</div>
+	 		</div>
+	 </div>
+ </div>
 
+ <div id="contenu">
+ 		<div id="headerC">
+ 					<nav id="ddmenuMst">
+ 					
+	<!-- REchercher -->
+		<div style="display: block" align="right">
+		<c:url value="${path}/product/search" var="searchLink"/>
+	   <form:form action="${searchLink}" method="GET"  class="form-wrapper">
+   	 	 <TABLE><tr>
+    	<td><INPUT   id="recinput" name="category" placeholder="Rechercher par produit" /></td>
+   			<td><BUTTON id="search">ok</BUTTON></td></tr>
+   		 </TABLE>
+	</form:form>
+</div>
+ 		</nav>	
+ 		 </div>
+<body>
+	
 
 <c:if test="${empty psSearchCriteria}">
    <c:out value="aucun resultat correspond à cette recherche" /> 
@@ -104,7 +98,7 @@ version="2.0">
 		<td>	Description : ${product.description}<br/> 	</td>  
 		<td>	price : ${product.price}<br/>  </td>
 		<td>	category : ${product.category.name}<br/>  </td>
-		<td>	category : ${product.couleur}<br/>  </td>
+	
 		<td><a href="/eshop/cart/add/${product._id}">Ajouter au panier</a></td>
 		</tr>
 		</c:forEach>
@@ -119,5 +113,12 @@ version="2.0">
 
 
 	</body>
+	</div>
+ 
+</div>
+
+<div id="footer">
+© 2013, E-shop.com
+</div>
 	</html>
 </jsp:root>

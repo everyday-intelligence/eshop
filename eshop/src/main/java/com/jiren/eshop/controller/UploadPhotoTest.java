@@ -29,7 +29,7 @@ import com.jiren.eshop.service.ProductService;
 
 public class UploadPhotoTest {
 	private static final Logger logger = LoggerFactory.getLogger(UploadPhotoTest.class);
-	
+
 	@RequestMapping
 	public String index(){
 		return "product/uploadphototest";
@@ -39,10 +39,10 @@ public class UploadPhotoTest {
 		if (!file.isEmpty()) {
 			try {
 				byte[] bytes = file.getBytes();
-				
+
 				System.out.println(bytes.length+" octets");
 		     String name=file.getOriginalFilename();
-		 
+
 				model.addAttribute("files",name);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

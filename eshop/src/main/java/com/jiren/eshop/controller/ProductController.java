@@ -127,10 +127,10 @@ public class ProductController {
 	public String list(Model model, HttpServletRequest request) {
 	// ProductSearch criteria= new ProductSearch();
 	// criteria.setName(request.getParameter("name"));
-	 String name =request.getParameter("name");
+	// String name =request.getParameter("name");
 	 String category =request.getParameter("category");
-	 if(name!=null || category!=null){
-		 List<Product> ps  =productService.findByNameAndCateory(name,category);
+	 if(category!=null){
+		 List<Product> ps  =productService.findByCategory(category);
 		// List<Product> ps  =productService.findByName(name);
 		// List<Product> ps2  =productService.findByCategory(category);
 		 model.addAttribute("psSearch",ps);
@@ -144,7 +144,7 @@ public class ProductController {
 	public String listSearch(Model model, HttpServletRequest request) {
 	 Product criteria= new Product();
 	criteria.setName(request.getParameter("name"));
-	criteria.setCouleur(request.getParameter("couleur"));
+	//criteria.setCouleur(request.getParameter("couleur"));
 	criteria.setDescription(request.getParameter("description"));
 //	String p=request.getParameter("price");
 	//float price= Float.parseFloat(p);
@@ -194,24 +194,12 @@ public class ProductController {
 	public String create(ModelMap model) {
 		Product p = new Product();
 		p.setCategory(new Category());
-//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//		String vendeur = auth.getName();
-		//userService.getCurrentlyAuthenticatedUser();
-		//model.put(key, currentUser.getName());
-	 //   p.setVendeur(userService.getCurrentlyAuthenticatedUser());
 
 		model.addAttribute("command", p);
 		return "product/new";
 	}
 
-//	@RequestMapping(method = RequestMethod.POST)
-//	public String processproduct(HttpServletRequest request,Model model,
-//							  @ModelAttribute("user") Product p,
-//							  HttpSession session){
-//		System.out.println("ajout au panier");
-//		return "redirect:/product/all";
-//	}
-//	
+	
 	
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String create(@ModelAttribute Product p, BindingResult result, @RequestParam("file") MultipartFile file) {

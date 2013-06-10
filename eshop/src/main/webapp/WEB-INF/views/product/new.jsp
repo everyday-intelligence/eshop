@@ -14,48 +14,49 @@ div {
 	padding: 8px;
 }
 </style>
-<SCRIPT language="javascript">
-	var c, c2, ch1, ch2;
-	 var counter = 2;
-	// ajouter un champ avec son "name" propre;
-	function plus() {
-		if(counter>5){
-		            alert("Only 5 textboxes allow");
-		             return false;
-			 	}   
-		c = document.getElementById('cadre');
-		c2 = c.getElementsByTagName('input');
-		ch1 = document.createElement('input');
-		ch2 = document.createElement('input');
+<SCRIPT>
+	
+		// ajouter un champ avec son "name" propre;
+			var c, c2, ch1, ch2;
+			var counter=2;
+		function plus() {
+			c = document.getElementById('cadre');
+			c2 = c.getElementsByTagName('input');
+			ch1 = document.createElement('input');
+			ch2 = document.createElement('input');
 
-		ch1.setAttribute('type', 'text');
-		ch1.setAttribute('name', 'description');
-		//ch1.setAttribute('readonly','readonly'); 
-		//ch1.setAttribute('value', 'attribut'+c2.length/2);
-		ch1.setAttribute('style', 'border:none');
+			ch1.setAttribute('type', 'text');
+			ch1.setAttribute('name', 'description');
+			ch1.setAttribute('readonly','readonly'); 
+			ch1.setAttribute('value', 'attribut'+c2.length/2);
+			ch1.setAttribute('style', 'border:none');
 
-		ch2.setAttribute('type', 'text');
-		ch2.setAttribute('name', 'description');
-		c.appendChild(ch1);
-		c.appendChild(ch2);
+			ch2.setAttribute('type', 'text');
+			ch2.setAttribute('name', 'description');
+			c.appendChild(ch1);
+			c.appendChild(ch2);
 
-		document.getElementById('sup').style.display = 'inline';
-		counter++;
-	}
-
-	// supprimer le dernier champ;
-	function moins() {
-		if (c2.length > 0) {
-			c.removeChild(c2[c2.length - 1]);
-			c.removeChild(c2[c2.length - 1]);
-			counter--;
+			document.getElementById('sup').style.display = 'inline';
+			counter++;
+			if(counter>5){
+				             alert("Only 5 textboxes allow");
+				            return false;
+					}
 		}
-		if (c2.length == 0) {
-			document.getElementById('sup').style.display = 'none'
+	
+		// supprimer le dernier champ;
+		function moins() {
+			if (c2.length > 0) {
+				c.removeChild(c2[c2.length - 1]);
+				c.removeChild(c2[c2.length - 1]);
+				counter--;
+			}
+			if (c2.length == 0) {
+				document.getElementById('sup').style.display = 'none';
 				
+			}
+			;
 		}
-		;
-	}
 
 	// function generatetextboxes()
 	// {
@@ -125,11 +126,7 @@ div {
 			<td><form:label path="price">price</form:label></td>
 			<td><form:input path="price" /></td>
 		</tr>
-		<tr>
-			<td><form:label path="couleur">couleur</form:label></td>
-			<td><form:input path="couleur" /></td>
-			
-		</tr>
+	
 		<tr>
 			<td>image</td>
 			<td>
@@ -141,13 +138,12 @@ div {
 		</tr>
 		<tr>
 			<td><form:label path="description">Description</form:label></td>
-			<td><form:input path="description" /></td></tr><tr>
-			<td></td><td>
-				<div id="cadre" style=" width: 100px"></div> <input
+			<td><form:textarea path="description" /></td>
+			<td>
+				<div id="cadre" style="margin-left: 100px; width: 200px"></div> <input
 				type="button" value="ajouter un champ" onclick="plus()" /> <input
 				type="button" style="display: none" id="sup"
-				value="supprimer un champ" onclick="moins()" /> <!-- 	<input type="button" value="add" onClick="generatetextboxes()">-->
-		</td> 
+				value="supprimer un champ" onclick="moins()" /></td> <!-- 	<input type="button" value="add" onClick="generatetextboxes()"></td> -->
 		</tr>
 		<tr>
 			<td></td>

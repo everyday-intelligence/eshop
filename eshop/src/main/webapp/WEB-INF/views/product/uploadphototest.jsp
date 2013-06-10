@@ -22,16 +22,16 @@ version="2.0">
 </head>
 <body>
 		<h1>Please upload a file</h1>
-			
+
 			<form:form method="post" action="uploadphototest/form" enctype="multipart/form-data">
 			 <input type="file" name="file" />
 				<input type="submit" />
 			</form:form>
-			
+
 	 	<c:forEach items="${files}"> 
 
 		Description : ${files}<br/>   
-		
+
 		</c:forEach> 
 </body>
 	</html>
