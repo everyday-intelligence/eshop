@@ -1,0 +1,319 @@
+
+body {
+font-size: 0.85em;
+font-family: Arial, Helvetica, Verdana, sans-serif;
+margin: 0px;
+padding: 0px;
+color: #000;
+
+font-size: 13px;
+}
+#header{
+	width:1330px; height:106px;border: 2px solid green; 
+	 font-family: arial, sans-serif;
+font-size: 12px;
+}
+
+.spar {
+ height: 2px;
+ background: #fff;
+ border-top:2px solid #c6d5e1;
+ 
+ 
+}
+#cote{
+	width:100px; height:800px;border: 2px solid yellow; 
+	 
+
+}
+#bb{
+	width:1230px; height:800px;border: 2px solid orange; 
+
+margin-left:100px;
+
+}
+#nav-cross-shop{
+	width:1330px; height:50px;border: 2px solid black; 
+
+
+
+}
+.nav-logo-large #nav-logo {
+width: 126px;
+height: 35px;
+background-position: -9px -779px;}
+
+#nav-bar-outer{
+	 height:56px;border: 2px solid red; 
+
+}
+#entete, #menu, #contenu, #footer {
+padding:1px 0;
+}
+#headerC{
+	 height:53px;
+	 font-family: arial, sans-serif;
+font-size: 12px;
+
+}
+#ddmenuMst ul {
+width: 100%;
+background: #4966A0 url(bg-blue.png) repeat-x 0 0;
+border: 1px solid #003366;
+display: inline-block;
+list-style: none;
+margin: 0;
+padding: 0;
+position: relative;
+font-size: 0;
+border-radius: 4px;
+z-index: 999999999;
+}
+#ddmenuMst a {
+color: #EEF4FB;
+padding: 0 22px;
+line-height: 50px;
+font-size: 13px;
+font-weight: bold;
+text-decoration: none;
+display: inline-block;
+outline: 0;
+position: relative;
+white-space: nowrap;
+}
+#ddmenuMst a.arrow {
+background-image: url(arrow2.gif);
+background-repeat: no-repeat;
+background-position: right center;
+border-left: 1px solid transparent;
+border-right: 1px solid transparent;
+}
+#entete {
+	 height:40px;
+
+
+padding:9px 0;
+text-align: right;
+}
+#entete a {
+display: inline-block;
+line-height: 40px;
+font-size: 13px;
+color: Black;
+text-decoration: none;
+padding: 0 10px;
+outline: none;
+}
+#enteteLogo {
+
+	width:250px;
+	position: absolute;
+	top: 0;
+	height:56px;
+}
+
+
+#main {
+max-with:960px;
+margin:auto;
+}
+#menu  {
+float:left;
+width:240px;
+
+ height:800px;
+}
+#menuR  {
+float:right;
+width:240px;
+
+ height:800px;
+}
+.cac {
+
+float:center;
+
+}
+
+
+#tb-searchbox{background:url(http://4.bp.blogspot.com/-IMj5WTIUZqM/UON1nNQvaqI/AAAAAAAABo8/ZJ_r_Qr3BF0/s1600/champ-recherche4.png) no-repeat scroll center center transparent;width:307px;height:50px;disaply:block;}
+form#tb-searchform{display: block;padding: 8px;margin:0;}
+form#tb-searchform #s{padding: 6px 6px 6px 26px;margin:0;width: 215px;font-size:14px;vertical-align: top;border:none;background:transparent;}
+form#tb-searchform #sbutton{margin:0;padding:0;height:30px;width:30px;vertical-align: top;border:none;background:transparent;}
+
+
+
+
+button:hover,
+button:focus {
+  outline   : none;
+  background: #000;
+  color   : #FFF;
+}
+#recinput {
+    width:92%;
+    border:1px solid #899caa;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    color:#3a454d;
+    font-weight:bold;
+    padding:8px 8px;
+    box-shadow:inset 0px 1px 3px #bbb;
+    -webkit-box-shadow:inset 0px 1px 3px #bbb;
+    -moz-box-shadow:inset 0px 1px 3px #bbb;
+    font-size:12px;
+}
+#twotabsearchtextbox {
+margin: 7px 0 0 0;
+padding: 0;
+width: 100%;
+height: 23px;
+border: 0;
+font-family: "arial","sans-serif";
+font-size: 12pt;
+background: transparent;
+color: black;
+outline: 0;
+-webkit-appearance: none;
+-webkit-box-shadow: none;
+box-shadow: none;
+}
+
+
+#ddmenuMst {
+display: block;
+font-family: Arial;
+text-align: center;
+}
+hr {
+border: 0;
+color: #9E9E9E;
+background-color: #9E9E9E;
+height: 1px;
+width: 100%;
+text-align: left;
+}
+#ddmenuMst li {
+margin: 0;
+padding: 0;
+display: inline-block;
+position: relative;}
+#rech  {
+ top:190px;
+float:left;
+width:182px;
+position: absolute;
+ height:300px;
+}
+.fpBloc {
+width: 182px;
+border: 1px solid #ccc;
+margin: 0 0 8px 0;
+padding: 0;
+}
+.fpBlocContent {
+padding: 5px 0;
+}
+#blcconfig {
+display: none;
+padding: 0;
+}
+.blcconf .fconfig {
+font-weight: bold;
+padding: 5px;
+margin: 5px 0;
+width: 170px;
+margin: 0 auto;
+border: none;
+}
+.text, .textb, .text5 {
+color: #5a5a5a;
+}
+.blcconf .fconfig form {
+padding: 0;
+margin: 0;
+}
+.fpBlocTitle {
+background: url(http://s1.static69.com/images/ficheProd/fd_menu_droite.gif) repeat-x;
+font-size: 13px;
+height: 20px;
+line-height: 20px;
+color: white;
+text-align: center;
+}
+
+#contenu {
+margin-left:245px;
+
+}
+#footer {
+
+text-align:center;
+clear:both;
+padding:10px 0;
+}
+#recherche-texte {
+
+height: 23px;
+background: url(img/sous-menu-search-input.png) top left repeat-x;
+border: 1;
+
+vertical-align: middle;
+color: #666;
+padding: 0 0 0 6px;
+list-style: none;
+margin: 0 5px 5px 0;
+width: 170px;
+}
+***************************************
+
+div.menu4
+{
+    /*width:500px;margin:0 auto;*//*Uncomment this line to make the menu center-aligned.*/
+    text-align:center;
+    font-size:0;
+    height: 25px;  
+    *position:relative;*top:1px;/*Hacks for IE6 & IE7 */  
+}
+
+div.menu4 a
+{
+    display: inline-block;
+    margin-right:6px; /* It specifies the distance between each tab */
+    background:#FFF url(bg.gif) repeat-x 0 0;
+    padding-left:4px;
+    vertical-align:top;/*ChangeSet#1*/
+    text-decoration:none;
+}
+
+div.menu4 a span
+{
+    display: inline-block;
+    background:#FFF url(bg.gif) repeat-x 100% 0;
+    padding: 0 20px;
+    text-decoration:none;
+    font: normal 12px Arial;
+    line-height: 25px;
+    color:#7087A9;
+    vertical-align:top;
+}
+
+div.menu4 a:hover, div.menu4 a.current
+{
+    background:#FFF url(bg.gif) repeat-x 0 -25px;
+    line-height: 26px;
+}
+
+div.menu4 a:hover span, div.menu4 a.current span
+{
+    background:#FFF url(bg.gif) repeat-x 100% -25px;
+    line-height: 26px;
+    color:#244D8A;
+}
+
+div.menu4sub
+{
+    height:8px;
+    border:1px solid #C2D5EF;
+    background:#eee url(bg.gif) repeat-x 0 -50px;
+}
