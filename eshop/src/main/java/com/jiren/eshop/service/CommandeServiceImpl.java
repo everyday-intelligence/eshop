@@ -53,10 +53,11 @@ public class CommandeServiceImpl implements CommandeService {
     UserService userService;
 	@Autowired
 	ProductService productService;
-	@Qualifier("monEmailSender")
+	//@Qualifier("monEmailSender")
+	@Autowired
 	 private MailSender mailSender;
-
-	@Qualifier("monSimpleMailMessage")
+	//@Qualifier("monSimpleMailMessage")
+	@Autowired
 	 private SimpleMailMessage templateMessage;
 	
 	public void setMailSender(MailSender mailSender) {
@@ -87,6 +88,14 @@ public class CommandeServiceImpl implements CommandeService {
 
 
 
+	public MailSender getMailSender() {
+		return mailSender;
+	}
+
+	public SimpleMailMessage getTemplateMessage() {
+		return templateMessage;
+	}
+
 	@Override
 	public float countAllAccounts() {
 		 return commandeRepository.count();
@@ -108,7 +117,7 @@ public class CommandeServiceImpl implements CommandeService {
 		c.setEtat("Non envoyée");
 	   
 		commandeRepository.save(c);
-		
+		System.out.println(this.templateMessage);
 		  SimpleMailMessage msg = new SimpleMailMessage(this.templateMessage);
 	        msg.setTo(c.getUser().getMail());
 	        msg.setText(

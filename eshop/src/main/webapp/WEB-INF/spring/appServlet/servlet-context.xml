@@ -49,38 +49,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 	<!-- Store preferred language configuration in a cookie -->
 	<bean class="org.springframework.web.servlet.i18n.CookieLocaleResolver" id="localeResolver" p:cookieName="locale"/>
 	
-<!-- 		<bean id="mails" class="org.springframework.mail.javamail.JavaMailSenderImpl"> -->
-<!-- 		  <property name="host" value="smtp.gmail.com"/> -->
-		   
-<!-- 		</bean> -->
-		
-<!-- 		this is a template message that we can pre-load with default state -->
-<!-- 		<bean class="org.springframework.mail.SimpleMailMessage"> -->
-<!-- 		  <property name="from" value="eshopeshop34@gmail.com"/> -->
-<!-- 		  <property name="subject" value="Your order"/> -->
-<!-- 		</bean> -->
 
-<bean class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<qualifier value="monEmailSender"/>
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="587" />
-		<property name="username" value="" />
-		<property name="password" value="" />
-
-		<property name="javaMailProperties">
-			<props>
-				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.smtp.starttls.enable">true</prop>
-			</props>
-		</property>
-	</bean>
-
-	<!-- this is a template message that we can pre-load with default state -->
-	<bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
-			<qualifier value="monSimpleMailMessage"/>
-		<property name="from" value="eshopeshop34@gmail.com" />
-		<property name="subject" value="Your order" />
-	</bean>
 
 
 
